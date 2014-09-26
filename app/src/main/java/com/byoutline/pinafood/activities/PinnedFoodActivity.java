@@ -3,6 +3,7 @@ package com.byoutline.pinafood.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,15 +20,14 @@ import timber.log.Timber;
 public class PinnedFoodActivity extends Activity {
 
     public static final int REQUEST_CODE = 123;
-    @Inject
     UserManager userManager;
-    @Inject
-    Bus bus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PinAFoodApp.doDaggerInject(this);
+
+        userManager =
+                new UserManager(PreferenceManager.getDefaultSharedPreferences(this));
 
         if(userManager.isNoUserLogged()) {
 

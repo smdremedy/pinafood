@@ -20,7 +20,6 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-@Singleton
 public class UserManager {
 
     public static final String SESSION_TOKEN = "sessionToken";
@@ -30,35 +29,10 @@ public class UserManager {
     public String userObjectId;
 
     private final SharedPreferences sharedPreferences;
-    private final ParseService parseService;
-    private final Bus bus;
-
-    private Callback<UserCreatedResponse> callback = new Callback<UserCreatedResponse>() {
-
-        @DebugLog
-        @Override
-        public void success(UserCreatedResponse userCreatedResponse, Response response) {
-            saveUser(userCreatedResponse.sessionToken,
-                    userCreatedResponse.objectId);
-            bus.post(new UserLoggedEvent());
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            ErrorResponse errorResponse = (ErrorResponse) error.getBodyAs(ErrorResponse.class);
-            bus.post(new UserLoginFailedEvent(errorResponse.error));
-            Log.d("TAG", error.toString() + " body:" + errorResponse.error);
 
 
-        }
-    };
-
-    @Inject
-    public UserManager(SharedPreferences sharedPreferences, ParseService parseService, Bus bus) {
+    public UserManager(SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;
-        this.parseService = parseService;
-        this.bus = bus;
-        this.bus.register(this);
 
         sessionToken = sharedPreferences.getString(SESSION_TOKEN, null);
         userObjectId = sharedPreferences.getString(USER_OBJECT_ID, null);
@@ -91,7 +65,7 @@ public class UserManager {
     public void signUpUser(String email, String password) {
 
         final User user = getUser(email, password);
-        parseService.postUser(user, callback);
+
     }
 
     private User getUser(String email, String password) {
@@ -102,6 +76,6 @@ public class UserManager {
     }
 
     public void signInUser(String email, String password) {
-        parseService.getLogin(email, password, callback);
+
     }
 }

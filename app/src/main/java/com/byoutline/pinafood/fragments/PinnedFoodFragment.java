@@ -30,17 +30,10 @@ import timber.log.Timber;
 
 public class PinnedFoodFragment extends Fragment {
 
-    @InjectView(R.id.pins_sgv)
     StaggeredGridView staggeredGridView;
 
     private PinsAdapter adapter;
 
-    @Inject
-    ParseService parseService;
-    @Inject
-    Bus bus;
-    @Inject
-    PinsManager pinsManager;
 
     public PinnedFoodFragment() {
     }
@@ -49,35 +42,23 @@ public class PinnedFoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pinned_food, container, false);
-        ButterKnife.inject(this, rootView);
         return rootView;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        PinAFoodApp.doDaggerInject(this);
         adapter = new PinsAdapter(getActivity().getApplicationContext());
-
-        staggeredGridView.setAdapter(adapter);
-
-        pinsManager.fetchPins();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        bus.unregister(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        bus.register(this);
     }
 
-    @Subscribe
-    public void onPinsFetched(PinsFetchedEvent event) {
-        adapter.addAll(event.pins);
-    }
 }

@@ -52,9 +52,6 @@ public class TumblrPostsAdapter extends BaseAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.list_item_iv);
         if(post.getPhotos().size() > 0) {
             Photo photo = post.getPhotos().get(0);
-            Picasso.with(context).load(photo.getOriginalSize().getUrl())
-                    .resize(PHOTO_TARGET_SIZE,PHOTO_TARGET_SIZE).centerCrop()
-                    .into(imageView);
         }
         TextView textView = (TextView) view.findViewById(R.id.list_item_tv);
         textView.setText(Html.fromHtml(post.getCaption()).toString().trim());

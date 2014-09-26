@@ -24,31 +24,13 @@ public class PinsManager {
 
     private List<Pin> pins;
 
-    @Produce
-    PinsFetchedEvent producesPinsFetchedEvent() {
-        return new PinsFetchedEvent(pins);
-    }
-
-    @Inject
     public PinsManager(ParseService parseService, Bus bus) {
         this.parseService = parseService;
         this.bus = bus;
     }
 
     public void fetchPins() {
-        parseService.getPins(new Callback<PinsResult>() {
-            @Override
-            public void success(PinsResult pinsResult, retrofit.client.Response response) {
-                Timber.d("Results:" + pinsResult.results);
-                pins = pinsResult.results;
-                bus.post(new PinsFetchedEvent(pins));
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-
-            }
-        });
 
     }
 
@@ -57,19 +39,7 @@ public class PinsManager {
     }
 
     public void postNewPin(Pin pin) {
-        parseService.postNewPin(pin, new Callback<Pin>() {
-            @Override
-            public void success(Pin pin, Response response) {
-                bus.post(new PinAddedEvent());
 
-                fetchPins();
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-            }
-        });
 
     }
 }

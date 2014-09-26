@@ -15,21 +15,5 @@ import retrofit.http.Query;
 
 public interface ParseService {
 
-    @Headers("Content-Type: application/json")
-    @POST("/users")
-    void postUser(@Body User user,
-                  Callback<UserCreatedResponse> callback);
 
-    @GET("/login")
-    void getLogin(@Query("username")String username,
-                  @Query("password")String password,
-                  Callback<UserCreatedResponse> callback);
-
-
-    @POST("/classes/Pin")
-    void postNewPin(@Body Pin pin,
-                    Callback<Pin> callback);
-
-    @GET("/classes/Pin")
-    void getPins(Callback<PinsResult> callback);
 }
