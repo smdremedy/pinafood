@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <ImageView
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:id="@+id/pin_item_image_dhiv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+
+        android:id="@+id/pin_item_text_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/side_red_stroke"
+        android:paddingRight="@dimen/pin_item_padding_main"
+        android:paddingTop="@dimen/pin_item_padding_main"
+        android:paddingBottom="@dimen/pin_item_padding_main"
+        android:paddingLeft="@dimen/pin_item_padding_left"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        />
+
+</LinearLayout>

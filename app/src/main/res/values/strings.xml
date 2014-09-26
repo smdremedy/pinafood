@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PinAFood</string>
+    <string name="title_activity_pinned_food">Pinned Food</string>
+    <string name="title_activity_add_pin">Add A Pin</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_pass">Password</string>
+
+</resources>

@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.byoutline.pinafood.fragments.AddPinFragment">
+
+    <ListView
+        android:scrollbars="none"
+        android:padding="@dimen/padding_side_list"
+        android:clipToPadding="false"
+        android:id="@+id/blogs_lv"
+        android:dividerHeight="@dimen/add_pin_divider_list_height"
+        android:divider="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>
