@@ -1,6 +1,7 @@
 package com.byoutline.pinafood.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +20,10 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class PinsAdapter extends BaseAdapter {
+public class PinsAdapter extends RecyclerView.Adapter<PinsAdapter.ViewHolder> {
 
     public static final int PHOTO_TARGET_SIZE = 300;
+
     private final Context context;
     private final LayoutInflater inflater;
 
@@ -33,13 +35,20 @@ public class PinsAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
-        return pins.size();
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        return new ViewHolder(inflater.inflate(R.layout.pin_item, viewGroup, false));
     }
 
     @Override
-    public Pin getItem(int position) {
-        return pins.get(position);
+    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+        Pin pin = pins.get(i);
+        Picasso.with(context)
+                .load(pin.photoUrl)
+                .resize(PHOTO_TARGET_SIZE,  PHOTO_TARGET_SIZE)
+                .into(viewHolder.pinItemImageImageView);
+        viewHolder.pinItemTextView.setText(Html.fromHtml(pin.caption).toString().trim());
+
+
     }
 
     @Override
@@ -48,23 +57,8 @@ public class PinsAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.pin_item, parent, false);
-        }
-        ViewHolder viewHolder = (ViewHolder) convertView.getTag();
-        if(viewHolder == null) {
-            viewHolder = new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        }
-
-        Pin pin = getItem(position);
-        Picasso.with(context)
-                .load(pin.photoUrl)
-                .resize(PHOTO_TARGET_SIZE,  PHOTO_TARGET_SIZE)
-                .into(viewHolder.pinItemImageImageView);
-        viewHolder.pinItemTextView.setText(Html.fromHtml(pin.caption).toString().trim());
-        return convertView;
+    public int getItemCount() {
+        return pins.size();
     }
 
     public void addAll(List<Pin> results) {
@@ -73,17 +67,16 @@ public class PinsAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    private class ViewHandler {
-    }
-
-    static class ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.pin_item_image_dhiv)
         ImageView pinItemImageImageView;
         @InjectView(R.id.pin_item_text_tv)
         TextView pinItemTextView;
 
         ViewHolder(View view) {
+            super(view);
             ButterKnife.inject(this, view);
         }
     }
+
 }

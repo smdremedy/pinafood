@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,12 +19,18 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 
 public class PinnedFoodActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 
     @Inject
     UserManager userManager;
+
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,9 @@ public class PinnedFoodActivity extends ActionBarActivity implements NavigationD
             return;
         }
         setContentView(R.layout.activity_pinned_food);
+        ButterKnife.inject(this);
+
+        setSupportActionBar(toolbar);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -97,6 +107,11 @@ public class PinnedFoodActivity extends ActionBarActivity implements NavigationD
         fragmentManager.beginTransaction()
                 .replace(R.id.container, new PinnedFoodFragment())
                 .commit();
+    }
+
+    @Override
+    public Toolbar getToolbar() {
+        return toolbar;
     }
 
     public void onSectionAttached(String title) {

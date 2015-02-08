@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,7 +21,6 @@ import com.byoutline.pinafood.adapters.PinsAdapter;
 import com.byoutline.pinafood.R;
 import com.byoutline.pinafood.events.PinsFetchedEvent;
 import com.byoutline.pinafood.managers.PinsManager;
-import com.etsy.android.grid.StaggeredGridView;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -32,8 +33,8 @@ public class PinnedFoodFragment extends Fragment {
 
     public static final int REQUEST_CODE = 123;
 
-    @InjectView(R.id.pins_sgv)
-    StaggeredGridView staggeredGridView;
+    @InjectView(R.id.pins_rv)
+    RecyclerView recyclerView;
 
     private PinsAdapter adapter;
 
@@ -61,8 +62,8 @@ public class PinnedFoodFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         PinAFoodApp.doDaggerInject(this);
         adapter = new PinsAdapter(getActivity().getApplicationContext());
-
-        staggeredGridView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.setAdapter(adapter);
 
         pinsManager.fetchPins();
     }
