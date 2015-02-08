@@ -19,7 +19,15 @@
 
 <resources>
 
-    <style name="Theme.Pinafood" parent="@android:style/Theme.Holo.Light">
+    <style name="Theme.Pinafood" parent="Theme.AppCompat.Light">
+
+        <!--&lt;!&ndash;   your app branding color for the app bar &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/light_red</item>-->
+        <!--&lt;!&ndash;   darker variant for the status bar and contextual app bars &ndash;&gt;-->
+        <!--<item name="colorPrimaryDark">@color/dark_red</item>-->
+        <!--&lt;!&ndash;   theme UI controls like checkboxes and text fields &ndash;&gt;-->
+        <!--<item name="colorAccent">@color/light_grey</item>-->
+        <!--<item name="colorControlHighlight">@color/light_red</item>-->
         <item name="android:actionBarItemBackground">@drawable/selectable_background_pinafood</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Pinafood</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Pinafood</item>

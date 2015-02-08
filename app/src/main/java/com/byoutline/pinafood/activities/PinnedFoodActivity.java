@@ -1,11 +1,15 @@
 package com.byoutline.pinafood.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.byoutline.pinafood.NavigationDrawerFragment;
 import com.byoutline.pinafood.PinAFoodApp;
 import com.byoutline.pinafood.R;
 import com.byoutline.pinafood.managers.UserManager;
@@ -14,15 +18,12 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
 
-public class PinnedFoodActivity extends Activity {
+public class PinnedFoodActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    public static final int REQUEST_CODE = 123;
+
     @Inject
     UserManager userManager;
-    @Inject
-    Bus bus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +39,29 @@ public class PinnedFoodActivity extends Activity {
         }
         setContentView(R.layout.activity_pinned_food);
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PinnedFoodFragment())
-                    .commit();
-        }
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mTitle = getTitle();
+
+        // Set up the drawer.
+        mNavigationDrawerFragment.setUp(
+                R.id.navigation_drawer,
+                (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.pinned_food, menu);
+        if (!mNavigationDrawerFragment.isDrawerOpen()) {
+            // Only show items in the action bar relevant to this screen
+            // if the drawer is not showing. Otherwise, let the drawer
+            // decide what to show in the action bar.
+            getMenuInflater().inflate(R.menu.global, menu);
+            restoreActionBar();
+            return true;
+        }
         return true;
     }
 
@@ -55,11 +69,7 @@ public class PinnedFoodActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_add) {
-            Intent intent = new Intent(getApplicationContext(), AddPinActivity.class);
-            startActivityForResult(intent, REQUEST_CODE);
-            return true;
-        } else if(id == R.id.action_logout) {
+        if(id == R.id.action_logout) {
             userManager.logoutUser();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
@@ -68,5 +78,40 @@ public class PinnedFoodActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
+     */
+    private NavigationDrawerFragment mNavigationDrawerFragment;
+
+    /**
+     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
+     */
+    private CharSequence mTitle;
+
+
+    @Override
+    public void onNavigationDrawerItemSelected(int position) {
+        // update the main content by replacing fragments
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, new PinnedFoodFragment())
+                .commit();
+    }
+
+    public void onSectionAttached(String title) {
+        mTitle = title;
+    }
+
+    public void restoreActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle(mTitle);
+    }
+
+
+
+
 
 }

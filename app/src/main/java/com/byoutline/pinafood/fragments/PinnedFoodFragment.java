@@ -1,19 +1,22 @@
 package com.byoutline.pinafood.fragments;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.byoutline.pinafood.activities.AddPinActivity;
 import com.byoutline.pinafood.activities.PinnedFoodActivity;
 import com.byoutline.pinafood.api.parse.ParseService;
 import com.byoutline.pinafood.PinAFoodApp;
 import com.byoutline.pinafood.adapters.PinsAdapter;
 import com.byoutline.pinafood.R;
-import com.byoutline.pinafood.api.parse.model.PinsResult;
 import com.byoutline.pinafood.events.PinsFetchedEvent;
 import com.byoutline.pinafood.managers.PinsManager;
 import com.etsy.android.grid.StaggeredGridView;
@@ -24,11 +27,10 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import timber.log.Timber;
 
 public class PinnedFoodFragment extends Fragment {
+
+    public static final int REQUEST_CODE = 123;
 
     @InjectView(R.id.pins_sgv)
     StaggeredGridView staggeredGridView;
@@ -43,6 +45,7 @@ public class PinnedFoodFragment extends Fragment {
     PinsManager pinsManager;
 
     public PinnedFoodFragment() {
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -64,6 +67,24 @@ public class PinnedFoodFragment extends Fragment {
         pinsManager.fetchPins();
     }
 
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.pinned_food, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_add) {
+            Intent intent = new Intent(getActivity(), AddPinActivity.class);
+            startActivityForResult(intent, REQUEST_CODE);
+            return true;
+        } else
+            return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -74,6 +95,14 @@ public class PinnedFoodFragment extends Fragment {
     public void onResume() {
         super.onResume();
         bus.register(this);
+    }
+
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((PinnedFoodActivity) activity).onSectionAttached(getString(R.string.title_activity_pinned_food));
     }
 
     @Subscribe

@@ -1,13 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.byoutline.pinafood.activities.PinnedFoodActivity" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.byoutline.pinafood.activities.PinnedFoodActivity">
+
     <item android:id="@+id/action_add"
         android:title="Add"
+        android:icon="@drawable/ic_launcher"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/action_logout"
-        android:title="Logout"
-        android:orderInCategory="101"
-        android:showAsAction="never" />
+
 </menu>

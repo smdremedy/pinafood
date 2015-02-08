@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:id="@+id/item_ll"
               android:background="@drawable/rounded_red_stroke"
               android:orientation="horizontal">
 
@@ -10,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <TextView
+    <com.byoutline.pinafood.CustomFontTextView
         android:textSize="@dimen/add_pin_list_item_name_text_size"
         android:id="@+id/list_item_tv"
         android:layout_width="0dp"
