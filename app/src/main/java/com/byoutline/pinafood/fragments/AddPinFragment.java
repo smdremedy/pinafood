@@ -2,6 +2,7 @@ package com.byoutline.pinafood.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.internal.widget.AdapterViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +37,9 @@ public class AddPinFragment extends Fragment implements TumblrPostsAdapter.OnPos
     @InjectView(R.id.blogs_rv)
     RecyclerView recyclerView;
 
+    @InjectView(R.id.add_pin_swipe_refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private TumblrPostsAdapter adapter;
 
     @Inject
@@ -63,6 +67,20 @@ public class AddPinFragment extends Fragment implements TumblrPostsAdapter.OnPos
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.inject(this, view);
         setUpAdapters();
+        swipeRefreshLayout.setProgressBackgroundColor(R.color.accent);
+        swipeRefreshLayout.setSize(SwipeRefreshLayout.LARGE);
+        swipeRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_purple);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                refreshDataFromApi();
+            }
+        });
     }
 
     private void setUpAdapters() {
@@ -97,12 +115,16 @@ public class AddPinFragment extends Fragment implements TumblrPostsAdapter.OnPos
         super.onActivityCreated(savedInstanceState);
         PinAFoodApp.doDaggerInject(this);
 
+        refreshDataFromApi();
+    }
 
+    private void refreshDataFromApi() {
         tumblrApi.getMunchiesPosts(new Callback<TumblrResponse>() {
             @Override
             public void success(TumblrResponse tumblrResponse, retrofit.client.Response response) {
 
                 adapter.addAll(tumblrResponse.getResponse().getPosts());
+                swipeRefreshLayout.setRefreshing(false);
 
             }
 

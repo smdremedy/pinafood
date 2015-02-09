@@ -1,0 +1,32 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        tools:context="com.byoutline.pinafood.activities.PinDetailsActivity$PlaceholderFragment">
+
+        <ImageView
+            android:id="@+id/pin_details_image_iv"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/pin_details_more_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ab_height"
+            android:background="@color/accent"
+            android:gravity="center"
+            android:text="Show more" />
+
+        <WebView
+            android:id="@+id/pin_details_content_wv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>

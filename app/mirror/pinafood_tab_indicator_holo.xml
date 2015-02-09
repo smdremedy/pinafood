@@ -1,0 +1,15 @@
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ -->
+<screen>
+    <_content layout="@layout/pinafood_tab_indicator_holo">
+        <!-- ImageView Examples:
+        <android-icon src="@drawable/image_resource" />
+        <android-icon src="relative_path/image.jpg" /> -->
+        <android-icon />
+        <!-- TextView Examples:
+        <android-title text="@string/string_resource" />
+        <android-title text="Text literal" textSize="14sp" /> -->
+        <android-title />
+    </_content>
+</screen>

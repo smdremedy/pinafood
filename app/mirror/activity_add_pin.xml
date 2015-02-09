@@ -1,0 +1,17 @@
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ -->
+<screen script="code.js">
+    <actionbar menu="@menu/pinned_food">
+
+    </actionbar>
+    <_content layout="@layout/activity_add_pin">
+        <container>
+
+            <_content include="add_pin.xml">
+
+            </_content>
+
+        </container>
+    </_content>
+</screen>

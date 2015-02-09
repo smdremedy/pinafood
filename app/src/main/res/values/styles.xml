@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- File created by the Android Action Bar Style Generator
+<?xml version="1.0" encoding="utf-8"?><!-- File created by the Android Action Bar Style Generator
 
      Copyright (C) 2011 The Android Open Source Project
      Copyright (C) 2012 readyState Software Ltd
@@ -25,6 +24,8 @@
         <item name="colorAccent">@color/grey</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColor">@color/black</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 
 
@@ -47,6 +48,25 @@
         <item name="android:maxWidth">180dip</item>
     </style>
 
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <!--The size of the bars when they are parallel to each other-->
+        <item name="barSize">20dp</item>
+        <!--The max gap between the bars when they are parallel to each other-->
+        <item name="gapBetweenBars">4dp</item>
+        <!--The size of the middle bar when top and bottom bars
+          merge into middle bar to form an arrow-->
+        <item name="middleBarArrowSize">20dp</item>
+        <!--The size of the top and bottom bars when they merge to the middle
+          bar to form an arrow-->
+        <item name="topBottomBarArrowSize">15dp</item>
+        <!--The thickness (stroke size) for the bar paint-->
+        <item name="thickness">2dp</item>
+        <!--Whether bars should rotate or not during transition-->
+        <item name="spinBars">true</item>
+        <!--The drawing color for the bars-->
+        <item name="color">@android:color/white</item>
+    </style>
 
-    <color name="black">#000000</color>
+
+
 </resources>

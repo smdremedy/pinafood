@@ -26,10 +26,16 @@ public class PinsAdapter extends RecyclerView.Adapter<PinsAdapter.ViewHolder> {
 
     private final Context context;
     private final LayoutInflater inflater;
+    private final PinClickedListener pinClickedListener;
 
     private List<Pin> pins = new ArrayList<Pin>();
 
-    public PinsAdapter(Context context) {
+    public interface PinClickedListener {
+        void pinClicked(Pin pin, View view);
+    }
+
+    public PinsAdapter(Context context, PinClickedListener pinClickedListener) {
+        this.pinClickedListener = pinClickedListener;
         inflater = LayoutInflater.from(context);
         this.context = context;
     }
@@ -40,13 +46,19 @@ public class PinsAdapter extends RecyclerView.Adapter<PinsAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        Pin pin = pins.get(i);
+    public void onBindViewHolder(final ViewHolder viewHolder, int i) {
+        final Pin pin = pins.get(i);
         Picasso.with(context)
                 .load(pin.photoUrl)
                 .resize(PHOTO_TARGET_SIZE,  PHOTO_TARGET_SIZE)
                 .into(viewHolder.pinItemImageImageView);
         viewHolder.pinItemTextView.setText(Html.fromHtml(pin.caption).toString().trim());
+        viewHolder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pinClickedListener.pinClicked(pin, viewHolder.pinItemImageImageView);
+            }
+        });
 
 
     }
@@ -72,9 +84,11 @@ public class PinsAdapter extends RecyclerView.Adapter<PinsAdapter.ViewHolder> {
         ImageView pinItemImageImageView;
         @InjectView(R.id.pin_item_text_tv)
         TextView pinItemTextView;
+        private View rootView;
 
         ViewHolder(View view) {
             super(view);
+            rootView = view;
             ButterKnife.inject(this, view);
         }
     }

@@ -5,7 +5,9 @@ import com.byoutline.pinafood.api.tumblr.model.OriginalSize;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
-public class Pin {
+import java.io.Serializable;
+
+public class Pin implements Serializable {
 
     public String caption;
     public String linkUrl;
@@ -14,7 +16,7 @@ public class Pin {
     public long photoHeight;
 
     @SerializedName("ACL")
-    public JsonObject acl;
+    public transient JsonObject acl;
 
     public Pin(Post item, String userObjectId) {
         caption = item.getCaption();
@@ -28,10 +30,10 @@ public class Pin {
         }
 
         acl = new JsonObject();
-        JsonObject permisions = new JsonObject();
-        permisions.addProperty("read", true);
-        permisions.addProperty("write", true);
-        acl.add(userObjectId, permisions);
+        JsonObject permissions = new JsonObject();
+        permissions.addProperty("read", true);
+        permissions.addProperty("write", true);
+        acl.add(userObjectId, permissions);
     }
 
     @Override

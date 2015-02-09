@@ -1,0 +1,20 @@
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ -->
+<screen>
+    <_content layout="@layout/fragment_pinned_food">
+        <pins_sgv>
+            <items layout="@layout/pin_item" count="100">
+
+                <_item>
+                    <pin_item_image_dhiv src="@drawable/food2" />
+                    <pin_item_text_tv>testads</pin_item_text_tv>
+                </_item>
+                <_item>
+                    <pin_item_image_dhiv src="@drawable/food1" />
+                    <pin_item_text_tv>testads</pin_item_text_tv>
+                </_item>
+            </items>
+        </pins_sgv>
+    </_content>
+</screen>

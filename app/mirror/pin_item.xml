@@ -1,0 +1,15 @@
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ -->
+<screen>
+    <_content layout="@layout/pin_item">
+        <!-- ImageView Examples:
+        <pin_item_image_dhiv src="@drawable/image_resource" />
+        <pin_item_image_dhiv src="relative_path/image.jpg" /> -->
+        <pin_item_image_dhiv />
+        <!-- TextView Examples:
+        <pin_item_text_tv text="@string/string_resource" />
+        <pin_item_text_tv text="Text literal" textSize="14sp" /> -->
+        <pin_item_text_tv />
+    </_content>
+</screen>

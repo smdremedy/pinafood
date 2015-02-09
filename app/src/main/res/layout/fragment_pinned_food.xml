@@ -1,13 +1,30 @@
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/pins_rv"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:horizontalSpacing="5dp"
-    android:clipChildren="false"
-    android:verticalSpacing="5dp"
-    android:background="#F3EFE0"
-    tools:context="com.byoutline.pinafood.fragments.PinnedFoodFragment"/>
+    android:layout_height="match_parent">
 
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/pins_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F3EFE0"
+        android:clipChildren="false"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"
+        tools:context="com.byoutline.pinafood.fragments.PinnedFoodFragment" />
+
+    <ImageButton
+        android:id="@+id/add_button"
+        android:layout_width="@dimen/diameter"
+        android:layout_height="@dimen/diameter"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="@dimen/add_button_margin"
+        android:layout_marginEnd="@dimen/add_button_margin"
+        android:layout_marginRight="@dimen/add_button_margin"
+        android:tint="@android:color/white"
+        android:background="@drawable/oval_ripple"
+
+        android:src="@android:drawable/ic_input_add" />
+
+</FrameLayout>

@@ -1,0 +1,8 @@
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ -->
+<screen script="my.js">
+    <_content layout="@layout/activity_my">
+        <username_et customFont="OpenSansBold.ttf">username2</username_et>
+    </_content>
+</screen>

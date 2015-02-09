@@ -1,0 +1,37 @@
+<!-- [ Mirror metadata ] generatedAt: 1418655071993 -->
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ -->
+<screen>
+    <actionbar subtitle="food2" showHome="true" menu="@menu/pinned_food"/>
+    <_content layout="@layout/activity_with_pager">
+        <pager>
+            <_page title="Page1" layout="activity_my">
+                    <username_et customFont="OpenSansLight.ttf">fasd</username_et>
+
+            </_page>
+            <_page title="Page1" layout="fragment_add_pin">
+
+                    <blogs_lv>
+                        <items layout="@layout/pin_list_item"
+                            count="2">
+                            <_item>
+                                <list_item_iv src="@drawable/food1"/>
+                                <list_item_tv font="OpenSansLight.ttf">Dalmatian</list_item_tv>
+                            </_item>
+                            <_item>
+                                <list_item_iv src="@drawable/food2"/>
+                                <list_item_tv>Dalmatian2</list_item_tv>
+                            </_item>
+                            <_item>
+                                <list_item_iv src="@drawable/food3"/>
+                                <list_item_tv>Dalmatian</list_item_tv>
+                            </_item>
+
+                        </items>
+                    </blogs_lv>
+
+            </_page>
+        </pager>
+    </_content>
+</screen>
