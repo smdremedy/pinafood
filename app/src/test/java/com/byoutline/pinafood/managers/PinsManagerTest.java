@@ -8,6 +8,7 @@ public class PinsManagerTest {
 
     @Test
     public void testName() throws Exception {
+
         assertThat(new PinsManagerTest()).isNotNull();
 
     }
