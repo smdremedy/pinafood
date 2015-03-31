@@ -10,7 +10,7 @@
         android:adjustViewBounds="true"
         android:src="@drawable/logo" />
 
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ListView
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/drawer_list"
         android:layout_width="match_parent"

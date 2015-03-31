@@ -3,29 +3,27 @@ package com.byoutline.pinafood.fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.internal.widget.AdapterViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.byoutline.pinafood.adapters.TumblrPostsAdapter;
-import com.byoutline.pinafood.api.tumblr.TumblrApi;
 import com.byoutline.pinafood.PinAFoodApp;
-import com.byoutline.pinafood.api.tumblr.model.Post;
 import com.byoutline.pinafood.R;
+import com.byoutline.pinafood.adapters.TumblrPostsAdapter;
+import com.byoutline.pinafood.api.parse.model.Pin;
+import com.byoutline.pinafood.api.tumblr.TumblrApi;
+import com.byoutline.pinafood.api.tumblr.model.Post;
 import com.byoutline.pinafood.api.tumblr.model.TumblrResponse;
 import com.byoutline.pinafood.managers.PinsManager;
 import com.byoutline.pinafood.managers.UserManager;
-import com.byoutline.pinafood.api.parse.model.Pin;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnItemClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 
@@ -67,7 +65,7 @@ public class AddPinFragment extends Fragment implements TumblrPostsAdapter.OnPos
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.inject(this, view);
         setUpAdapters();
-        swipeRefreshLayout.setProgressBackgroundColor(R.color.accent);
+        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.accent);
         swipeRefreshLayout.setSize(SwipeRefreshLayout.LARGE);
         swipeRefreshLayout.setColorSchemeResources(
                 android.R.color.holo_blue_bright,
