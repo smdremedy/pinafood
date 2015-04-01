@@ -27,10 +27,6 @@
             android:name=".activities.AddPinActivity"
             android:label="@string/title_activity_add_pin" >
         </activity>
-        <activity
-            android:name=".activities.TestActivity"
-            android:label="@string/title_activity_test" >
-        </activity>
     </application>
 
 </manifest>
