@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.byoutline.pinafood" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.byoutline.pinafood.PinAFoodApp"
+        android:name=".PinAFoodApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,6 @@
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/app_name" >
-
         </activity>
         <activity
             android:name=".activities.PinnedFoodActivity"
@@ -27,6 +26,10 @@
         <activity
             android:name=".activities.AddPinActivity"
             android:label="@string/title_activity_add_pin" >
+        </activity>
+        <activity
+            android:name=".activities.TestActivity"
+            android:label="@string/title_activity_test" >
         </activity>
     </application>
 
