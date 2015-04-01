@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="15dp"
+    app:cardCornerRadius="5dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
+    android:layout_margin="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
-
-    <ImageView
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:id="@+id/pin_item_image_dhiv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-
-        android:id="@+id/pin_item_text_tv"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/side_red_stroke"
-        android:paddingRight="@dimen/pin_item_padding_main"
-        android:paddingTop="@dimen/pin_item_padding_main"
-        android:paddingBottom="@dimen/pin_item_padding_main"
-        android:paddingLeft="@dimen/pin_item_padding_left"
-        android:textColor="@color/grey"
-        android:textSize="16sp"
-        />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/pin_item_image_dhiv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter" />
+
+        <TextView
+
+            android:id="@+id/pin_item_text_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/side_red_stroke"
+            android:paddingBottom="@dimen/pin_item_padding_main"
+            android:paddingLeft="@dimen/pin_item_padding_left"
+            android:paddingRight="@dimen/pin_item_padding_main"
+            android:paddingTop="@dimen/pin_item_padding_main"
+            android:textColor="@color/grey"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,6 +18,9 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class PinnedFoodActivity extends ActionBarActivity
 
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -26,6 +30,9 @@ public class PinnedFoodActivity extends ActionBarActivity
     UserManager userManager;
     @Inject
     Bus bus;
+
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -52,6 +59,12 @@ public class PinnedFoodActivity extends ActionBarActivity
         }
         setContentView(R.layout.activity_pinned_food);
 
+        ButterKnife.inject(this);
+
+        setSupportActionBar(toolbar);
+
+
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -61,11 +74,11 @@ public class PinnedFoodActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PinnedFoodFragment())
-                    .commit();
-        }
+//        if (savedInstanceState == null) {
+//            getFragmentManager().beginTransaction()
+//                    .add(R.id.container, new PinnedFoodFragment())
+//                    .commit();
+//        }
     }
 
     @Override

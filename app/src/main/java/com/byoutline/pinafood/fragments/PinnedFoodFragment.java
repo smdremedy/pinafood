@@ -1,22 +1,19 @@
 package com.byoutline.pinafood.fragments;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.byoutline.pinafood.activities.PinnedFoodActivity;
-import com.byoutline.pinafood.api.parse.ParseService;
 import com.byoutline.pinafood.PinAFoodApp;
-import com.byoutline.pinafood.adapters.PinsAdapter;
 import com.byoutline.pinafood.R;
-import com.byoutline.pinafood.api.parse.model.PinsResult;
+import com.byoutline.pinafood.adapters.PinsAdapter;
+import com.byoutline.pinafood.api.parse.ParseService;
 import com.byoutline.pinafood.events.PinsFetchedEvent;
 import com.byoutline.pinafood.managers.PinsManager;
-import com.etsy.android.grid.StaggeredGridView;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -24,14 +21,11 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import timber.log.Timber;
 
 public class PinnedFoodFragment extends Fragment {
 
     @InjectView(R.id.pins_sgv)
-    StaggeredGridView staggeredGridView;
+    RecyclerView recyclerView;
 
     private PinsAdapter adapter;
 
@@ -57,9 +51,10 @@ public class PinnedFoodFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         PinAFoodApp.doDaggerInject(this);
-        adapter = new PinsAdapter(getActivity().getApplicationContext());
+        adapter = new PinsAdapter(getActivity().getApplicationContext(), bus);
 
-        staggeredGridView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
         pinsManager.fetchPins();
     }
