@@ -7,6 +7,7 @@ import com.squareup.otto.Bus;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -17,6 +18,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@RunWith(CustomRobolectricRunner.class)
 public class UserManagerTest {
 
     private SharedPreferences sharedPreferences;
@@ -100,6 +102,6 @@ public class UserManagerTest {
         //when
 
         //when
-        assertTrue(TextUtils.isEmpty("ads"));
+        assertTrue(TextUtils.isEmpty(""));
     }
 }

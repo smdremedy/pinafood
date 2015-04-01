@@ -40,5 +40,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.0.0'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.9.5'
-    androidTestCompile 'org.robolectric:robolectric:2.4'
+    testCompile 'org.robolectric:robolectric:2.4'
 }
