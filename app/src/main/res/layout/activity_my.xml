@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/white"
+        android:background="?colorPrimary"
         android:orientation="vertical"
         android:padding="35dp"
         tools:context=".MyActivity">
@@ -26,7 +26,6 @@
             android:hint="@string/hint_username"/>
 
         <com.byoutline.secretsauce.views.CustomFontEditText
-            android:text="test2dsafsdfasdf"
             android:singleLine="true"
             android:id="@+id/password_et"
             android:layout_width="match_parent"

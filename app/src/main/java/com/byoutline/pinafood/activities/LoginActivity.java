@@ -3,6 +3,7 @@ package com.byoutline.pinafood.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,7 +26,7 @@ import butterknife.OnClick;
 public class LoginActivity extends Activity {
 
     @InjectView(R.id.username_et)
-    EditText emaiEditText;
+    EditText usernameEditText;
     @InjectView(R.id.password_et)
     EditText passwordEditText;
 
@@ -44,12 +45,23 @@ public class LoginActivity extends Activity {
 
     @OnClick({R.id.sign_up_btn, R.id.sign_in_btn})
     public void signUp(Button button) {
-        String email = emaiEditText.getText().toString();
+        String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-        if(button.getId() == R.id.sign_in_btn) {
-            userManager.signInUser(email, password);
-        } else {
-            userManager.signUpUser(email, password);
+        boolean hasError = false;
+        if(TextUtils.isEmpty(username)) {
+            usernameEditText.setError(getString(R.string.empty_field_warning));
+            hasError = true;
+        }
+        if(TextUtils.isEmpty(password)) {
+            passwordEditText.setError(getString(R.string.empty_field_warning));
+            hasError = true;
+        }
+        if(!hasError) {
+            if (button.getId() == R.id.sign_in_btn) {
+                userManager.signInUser(username, password);
+            } else {
+                userManager.signUpUser(username, password);
+            }
         }
     }
 
