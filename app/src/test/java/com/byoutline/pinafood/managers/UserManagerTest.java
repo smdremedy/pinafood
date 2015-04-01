@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -64,6 +65,8 @@ public class UserManagerTest {
 //
         //then
         assertEquals(expected, userManager.sessionToken);
+
+        assertThat(userManager.isNoUserLogged()).isEqualTo(false);
 
     }
 
