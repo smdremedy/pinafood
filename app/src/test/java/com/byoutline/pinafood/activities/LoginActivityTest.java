@@ -15,7 +15,6 @@ public class LoginActivityTest {
     public void testName() throws Exception {
         LoginActivity loginActivity = Robolectric.setupActivity(LoginActivity.class);
         assertThat(loginActivity).isNotNull();
-        assertThat(loginActivity.userManager.isNoUserLogged()).isFalse();
 
     }
 }
