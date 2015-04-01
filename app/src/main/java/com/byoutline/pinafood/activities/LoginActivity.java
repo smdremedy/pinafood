@@ -3,6 +3,7 @@ package com.byoutline.pinafood.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -46,6 +47,9 @@ public class LoginActivity extends Activity {
     public void signUp(Button button) {
         String email = emaiEditText.getText().toString();
         String password = passwordEditText.getText().toString();
+        if(TextUtils.isEmpty(email)) {
+            emaiEditText.setError(getString(R.string.empty_email_warning));
+        }
         if(button.getId() == R.id.sign_in_btn) {
             userManager.signInUser(email, password);
         } else {
