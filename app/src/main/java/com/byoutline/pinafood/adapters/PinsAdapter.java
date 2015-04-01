@@ -27,13 +27,11 @@ public class PinsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context context;
     private final LayoutInflater inflater;
     private final Bus bus;
-    private final PinClickedListener pinClickedListener;
 
     private List<Pin> pins = new ArrayList<Pin>();
 
-    public PinsAdapter(Context context, Bus bus, PinClickedListener pinClickedListener) {
+    public PinsAdapter(Context context, Bus bus) {
         this.bus = bus;
-        this.pinClickedListener = pinClickedListener;
         inflater = LayoutInflater.from(context);
         this.context = context;
     }
@@ -114,12 +112,6 @@ public class PinsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
         public void onClick(View view) {
-
-            if(pinClickedListener != null) {
-                pinClickedListener.pinClicked(pin);
-            }
-
-
 
         }
     }
