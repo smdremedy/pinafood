@@ -1,6 +1,7 @@
 package com.byoutline.pinafood.managers;
 
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.squareup.otto.Bus;
 
@@ -9,10 +10,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -44,7 +45,7 @@ public class UserManagerTest {
 
 
         userManager = new UserManager(sharedPreferences, null, busMock);
-        verify(busMock, times(2)).register(any());
+        verify(busMock).register(any());
 
 
     }
@@ -55,21 +56,50 @@ public class UserManagerTest {
         //given
         String expected = "1234567";
         when(sharedPreferences.getString(anyString(), anyString())).thenReturn(expected);
-
+//
         //when
         userManager = new UserManager(sharedPreferences, null, busMock);
-
+//
         //then
         assertEquals(expected, userManager.sessionToken);
 
     }
 
     @Test
+    public void shouldReadNameFromPrefs() throws Exception {
+        //given
+        String qweqwe = "qweqwe";
+        when(sharedPreferences.getString(UserManager.NAME, null)).thenReturn(qweqwe);
+
+        //when
+        userManager = new UserManager(sharedPreferences, null, busMock);
+
+        //when
+        assertEquals(qweqwe, userManager.name);
+    }
+
+    @Test
     public void shouldDoSomething() throws Exception {
+        //given
+        userManager = new UserManager(sharedPreferences, null, busMock);
+
+        SharedPreferences.Editor editorMock = mock(SharedPreferences.Editor.class);
+        when(sharedPreferences.edit()).thenReturn(editorMock);
+
+        //when
+        userManager.logoutUser();
+
+        //then
+        verify(editorMock).remove(UserManager.SESSION_TOKEN);
+    }
+
+    @Test
+    public void shouldWork() throws Exception {
         //given
 
         //when
 
-        //then
+        //when
+        assertTrue(TextUtils.isEmpty("ads"));
     }
 }

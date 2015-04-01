@@ -25,9 +25,11 @@ public class UserManager {
 
     public static final String SESSION_TOKEN = "sessionToken";
     public static final String USER_OBJECT_ID = "userObjectId";
+    public static final String NAME = "name";
 
     public String sessionToken;
     public String userObjectId;
+    public String name;
 
     private final SharedPreferences sharedPreferences;
     private final ParseService parseService;
@@ -53,6 +55,7 @@ public class UserManager {
         }
     };
 
+
     @Inject
     public UserManager(SharedPreferences sharedPreferences, ParseService parseService, Bus bus) {
         this.sharedPreferences = sharedPreferences;
@@ -62,6 +65,7 @@ public class UserManager {
 
         sessionToken = sharedPreferences.getString(SESSION_TOKEN, null);
         userObjectId = sharedPreferences.getString(USER_OBJECT_ID, null);
+        name = sharedPreferences.getString(NAME, null);
     }
 
     public void saveUser(String sessionToken, String userObjectId) {
