@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.0"
 
     defaultConfig {
         applicationId "com.byoutline.pinafood"
         minSdkVersion 15
-        targetSdkVersion 20
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -22,7 +22,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     provided 'com.squareup.dagger:dagger-compiler:1.2.1'
-
     compile 'com.jakewharton:butterknife:5.1.2'
     compile 'com.squareup.retrofit:retrofit:1.6.1'
     compile 'com.etsy.android.grid:library:1.0.5'
@@ -33,4 +32,5 @@ dependencies {
     compile 'com.jakewharton.hugo:hugo-runtime:1.1.0'
     compile 'com.jakewharton.timber:timber:2.4.+'
     compile 'com.android.support:support-v4:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.0.0'
 }

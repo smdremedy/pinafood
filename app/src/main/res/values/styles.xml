@@ -19,7 +19,7 @@
 
 <resources>
 
-    <style name="Theme.Pinafood" parent="@android:style/Theme.Holo.Light">
+    <style name="Theme.Pinafood" parent="Theme.AppCompat.Light">
         <item name="android:actionBarItemBackground">@drawable/selectable_background_pinafood</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Pinafood</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Pinafood</item>

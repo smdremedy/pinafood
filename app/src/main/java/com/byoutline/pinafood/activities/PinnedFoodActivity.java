@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,7 +17,7 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
-public class PinnedFoodActivity extends Activity
+public class PinnedFoodActivity extends ActionBarActivity
 
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -52,7 +53,7 @@ public class PinnedFoodActivity extends Activity
         setContentView(R.layout.activity_pinned_food);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
         // Set up the drawer.
