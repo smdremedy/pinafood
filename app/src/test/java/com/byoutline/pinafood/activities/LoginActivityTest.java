@@ -64,7 +64,7 @@ public class LoginActivityTest {
         loginActivity.signUp(button);
 
         //when
-        assertThat(loginActivity.emaiEditText.getError().toString())
+        assertThat(loginActivity.usernameEditText.getError().toString())
                 .isEqualTo(Robolectric.application.getString(R.string.empty_field_warning)  );
 
     }
