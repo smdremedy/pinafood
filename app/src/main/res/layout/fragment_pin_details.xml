@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/pin_details_more_tv"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ab_height"
+            android:layout_height="48dp"
             android:background="@color/accent"
             android:gravity="center"
             android:text="Show more" />

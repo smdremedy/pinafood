@@ -1,5 +1,6 @@
 package com.byoutline.pinafood.api;
 
+import com.byoutline.pinafood.PinAFoodApp;
 import com.byoutline.pinafood.activities.LoginActivity;
 import com.byoutline.pinafood.activities.PinnedFoodActivity;
 import com.byoutline.pinafood.api.parse.ApiHeaders;
@@ -47,7 +48,7 @@ public class ApiModule {
     @Singleton
     @NamedApi(PARSE)
     Endpoint provideParseApiEndpoint() {
-        return Endpoints.newFixedEndpoint(PARSE_API_URL);
+        return Endpoints.newFixedEndpoint(PinAFoodApp.useMocks ? "http://localhost:9999" : PARSE_API_URL);
     }
 
     @Provides

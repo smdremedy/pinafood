@@ -16,16 +16,14 @@
         android:padding="35dp"
         tools:context=".MyActivity">
 
-        <com.byoutline.pinafood.CustomFontEditText
+        <EditText
             android:singleLine="true"
             android:id="@+id/username_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            app:customFont="OpenSansBold.ttf"
             android:hint="@string/hint_username"/>
 
-        <com.byoutline.secretsauce.views.CustomFontEditText
+        <EditText
             android:singleLine="true"
             android:id="@+id/password_et"
             android:layout_width="match_parent"

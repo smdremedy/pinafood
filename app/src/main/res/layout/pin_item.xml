@@ -24,7 +24,7 @@
             android:adjustViewBounds="true"
              />
 
-        <com.byoutline.secretsauce.views.CustomFontTextView
+        <TextView
 
             android:id="@+id/pin_item_text_tv"
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:paddingTop="@dimen/pin_item_padding_main"
             android:textColor="#000"
             android:textSize="16sp"
-            app:customFont="OpenSansLight.ttf" />
+            />
 
     </LinearLayout>
 </android.support.v7.widget.CardView>
